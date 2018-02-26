@@ -9,32 +9,20 @@
 #   – the points are awarded as in an ATP 1000
 # (or maybe just 1 to 100? 128? rather than ATP, for simplicity?)
 
+# FW 1000; FL 600; SLs 360; QLs 180; R16Ls 90; R32Ls 45; R64Ls 25; R128Ls 10
+
 # First we run 51 weeks to produce the first starting 'complete' trailing-12-month ranking.
 
 # Then we run our simulation: in this case 10k weeks. The Gini Coefficient for each of the 52-week rankings is calculated and the results averaged to give an estimate of the expected value of the Gini Coefficient for a population of equally matched players.
 
 # The Gini Coefficient charts are then plotted on a single chart to help visualize the dispersion.  The mean, median, mode, and standard deviation of the data set are reported as an estimate of the expected value.
 
-# Create dictionary for {tournament place : ranking points}. This would allow different point schemes. Better to use function based on (2 ** x) to define indexes?
+import numpy as np
+import pandas as pd
 
-points = {
-            1:1000;
-            2:600;
-            3:360; 4:360;
-            5:180; 6:180; 7:180; 8:180;
-            9:90; 10:90; 11:90; 12:90; 13:90; 14:90; 15:90; 16:90;
-            17:45; 18:45; 19:45; 20:45; 21:45; 22:45; 23:45; 24:45; 25:45; 26:45; 27:45; 28:45; 29:45; 30:45; 31:45; 32:45; 33:45; 34:45; 35:45; 36:45;
+# Create list for {tournament place : ranking points}. This would allow different point schemes.
 
-            }
-
-FW 1000
-FL 600
-SLs 360
-QLs 180
-R16Ls 90
-R32Ls 45
-R64Ls 25
-R128Ls 10
+df_point_list = pd.DataFrame([1000]  + [600] + [360] * 2 + [180] * 4 + [90] * 8 + [45] * 16 + [25] * 32 + [10] * 64)
 
 # Create dataframe for 128 players, results by week, Gini for each week.
 
