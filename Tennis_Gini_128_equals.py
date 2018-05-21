@@ -19,16 +19,18 @@
 
 import numpy as np
 import pandas as pd
-from sklearn.utils import shuffle
 
 # Create list for {tournament place : ranking points}. This would allow different point schemes.
 
-df_point_list = pd.DataFrame([1000] + [600] + [360] * 2 + [180] * 4 + [90] * 8 + [45] * 16 + [25] * 32 + [10] * 64)
+np_point_list = np.array([1000] + [600] + [360] * 2 + [180] * 4 + [90] * 8 + [45] * 16 + [25] * 32 + [10] * 64)
 
-# Create dataframe for 128 players, results by week, Gini for each week.
+# Create dataframe for 128 players, results by week,
 
-df_player_list = pd.DataFrame(x for x in range(1, 129))
-df = shuffle(df)
+for x in range(1, 10052):
+
+
+# Calculate Gini for each week 52 to end.
+
 
 # Assign random places for 10051 tournaments to players using seeds 1–10051; append.
 
@@ -38,8 +40,7 @@ df = shuffle(df)
 
 
 
-# Calculate Gini-weighted rank for each player for each full-ranking week; create
-# new dataframe.
+# Calculate Gini-weighted rank for each player for each full-ranking week; create new dataframe.
 
 
 
