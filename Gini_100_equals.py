@@ -1,4 +1,4 @@
-# This is a Monte Carlo simulation to estimate the expected Gini coefficient for 100 equal actors' accumulated points over a set number of plays.
+# This is a Monte Carlo simulation to estimate the expected Gini coefficient for 100 equal actors' accumulated points over 100 rolling samples of 30 plays.
 
 import numpy as np
 import random as rd
