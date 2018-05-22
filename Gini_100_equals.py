@@ -26,3 +26,11 @@ for i in range(130):
 
 # Delete non-randomized score set
 np_results = np.delete(np_results, 1, 0)
+
+# Create array of rolling totals
+for j in range(100):
+    rolling_sum = [sum(np_results[j:j+30], 0)]
+    if j == 0:
+        np_rolling_sums_30 = rolling_sum
+    else:
+        np_rolling_sums_30 = np.append(np_rolling_sums_30, rolling_sum, axis = 0)
