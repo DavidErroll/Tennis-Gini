@@ -1,19 +1,28 @@
 # This is a Monte Carlo simulation to estimate the expected Gini coefficient for 100 equal actors' accumulated points over a set number of plays.
 
-# Create list of 100 players
+import numpy as np
+import random as rd
 
-player = 'player_'
-player_list = [[player + 'i'] for i in range(100)]
+rd.seed(1)
 
-# Create randomizable list of possible scores
+# Create a key of 100 players
+players = [[i for i in range(1000000, 1000100)]]
+np_player_key = np.array(players)
 
-scores = [[i] for i in range(1, 100)]
+# Create list of 100 possible scores
+scores = [i for i in range(100)]
+temp_scores = [scores]
+np_temp = np.array(temp_scores)
 
-# Create randomized score result
+# Create results array
+np_results = np.append(np_player_key, np_temp, axis = 0)
 
-import random
-random.seed(1)
+# Shuffle scores, create np score array, and append
+for i in range(130):
+    rd.shuffle(scores)
+    x = [scores]
+    np_scores = np.array(x)
+    np_results = np.append(np_results, np_scores, axis = 0)
 
-random_scores = shuffle(scores)
-
-results_list = player_list.append(random_scores)
+# Delete non-randomized score set
+np_results = np.delete(np_results, 1, 0)
