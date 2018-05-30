@@ -9,25 +9,26 @@ import random as rd
 
 rd.seed(1)
 
-def play_rounds(rounds):
+# Create list of 100 possible scores (0 to 99)
+scores = [i for i in range(5)]
+temp_scores = [scores]
 
-  # Create list of 100 possible scores (0 to 99)
-  scores = [i for i in range(100)]
-  temp_scores = [scores]
+# Create results array
+np_results = np.array([scores])
 
-  # Create results array
-  np_results = np.array([scores])
+# Shuffle scores, create score array, and append
+for i in range(3):
+    rd.shuffle(scores)
+    x = [scores]
+    np_scores = np.array(x)
+    np_results = np.append(arr = np_results, values = np_scores, axis = 0)
 
-  # Shuffle scores, create score array, and append
-  for i in range(rounds):
-      rd.shuffle(scores)
-      x = [scores]
-      np_scores = np.array(x)
-      np_results = np.append(arr = np_results, values = np_scores, axis = 0)
+# Delete non-randomized score set
+np_results = np.delete(arr = np_results, obj = 0, axis = 0)
 
-  # Delete non-randomized score set
-  np_results = np.delete(arr = np_results, obj = 1, axis = 0)
+# Create sums array
+sums_list = [i for i in range(100)]
+np_sums = np.array([sums_list])
 
-  return (np_results)
-
-def
+# Sum all scores in np_results
+temp_sums = np.sum(a = np_results, axis = 0)
