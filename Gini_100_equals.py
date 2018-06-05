@@ -11,7 +11,10 @@ import random as rd
 
 rd.seed(1)
 
+# The single_play function models an instance of a given number of "rounds" among a fixed number of players, where the players are ranked from first to last place (i.e., awarded points of 99 to 0) randomly because they are all of exactly equal skill; single_play produces an array of shape [number of players] x [number of rounds].
+
 def single_play(players, rounds):
+
     # Create list of possible scores; here players should = 100 (0 to 99)
     scores = [i for i in range(players)]
     temp_scores = [scores]
@@ -30,6 +33,8 @@ def single_play(players, rounds):
     np_results = np.delete(arr = np_results, obj = 0, axis = 0)
 
     return(np_results)
+
+# The aggregate_play function iterates single_play, summing the results for each player across the rounds; aggregate_play produces an array of shape [number of players] x [number of samples].
 
 def aggregate_play():
     # Create sums array
