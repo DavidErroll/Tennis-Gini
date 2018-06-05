@@ -36,9 +36,9 @@ def single_play(players, rounds):
 
 # The aggregate_play function iterates single_play, summing the results for each player across the rounds; aggregate_play produces an array of shape [number of players] x [number of samples].
 
-def aggregate_play():
+def aggregate_play(players):
     # Create sums array
-    sums_list = [i for i in range(100)]
+    sums_list = [i for i in range(players)]
     np_sums = np.array([sums_list])
 
     # Sum all scores in np_results
