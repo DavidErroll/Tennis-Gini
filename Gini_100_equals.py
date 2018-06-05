@@ -8,6 +8,7 @@
 
 import numpy as np
 import random as rd
+import pandas as pd
 
 rd.seed(1)
 
@@ -52,12 +53,21 @@ def aggregate_play(players, rounds, samples):
 
     return(np_sums)
 
+# The gini_calc function creates a pandas dataframe from the results of aggregate_play with a header equal to the Gini coefficient for that iteration.  Note that the sorted array np_sorted is only useful for caluclating the Gini coefficient that later becomes the dataframe header.
+
+def gini_calc(results_np_array):
+
+    # Sort array columns
+    np_sorted = np.sort(results_np_array)
+
+    
+
+
 # The interface function allows the user to set the input parameters: (1) number of players; (2) number of rounds per iteration; and (3) the number of iterations. For the standard model here, we use
 
 # (1) 100 players, 1 player per one-percent bin in Lorenze curve;
-# (2) 30 rounds per iteration, for a basically statistically significant sample size; and
+# (2) 30 rounds per iteration (basic statistically significant sample but may need more); and
 # (3) 10,000 iterations, for a large Monte Carlo simulation base.
-
 
 def interface():
     players_in = int(input("Number of players = "))
