@@ -36,14 +36,40 @@ def single_play(players, rounds):
 
 # The aggregate_play function iterates single_play, summing the results for each player across the rounds; aggregate_play produces an array of shape [number of players] x [number of samples].
 
-def aggregate_play(players):
+def aggregate_play(players, rounds, samples):
+
     # Create sums array
     sums_list = [i for i in range(players)]
     np_sums = np.array([sums_list])
 
-    # Sum all scores in np_results
-    temp_sums = np.sum(a = np_results, axis = 0)
+    for s in range(samples):
+        np_sample = single_play(players, rounds)
+        temp_sums = [np.sum(a = np_sample, axis = 0)]
+        np_sums = np.append(arr = np_sums, values = temp_sums, axis = 0)
 
-print(np_results)
-print(np_sums)
-print(temp_sums)
+    # Delete non-randomized score set
+    np_sums = np.delete(arr = np_sums, obj = 0, axis = 0)
+
+    return(np_sums)
+
+# The interface function allows the user to set the input parameters: (1) number of players; (2) number of rounds per iteration; and (3) the number of iterations. For the standard model here, we use
+
+# (1) 100 players, 1 player per one-percent bin in Lorenze curve;
+# (2) 30 rounds per iteration, for a basically statistically significant sample size; and
+# (3) 10,000 iterations, for a large Monte Carlo simulation base.
+
+
+def interface():
+    players_in = int(input("Number of players = "))
+    rounds_in = int(input("Number of rounds per iteration = "))
+    samples_in = int(input("Number of iterations = "))
+
+    np_results = aggregate_play(players_in, rounds_in, samples_in)
+
+    print(np_results)
+
+
+def main():
+    interface()
+
+main()
